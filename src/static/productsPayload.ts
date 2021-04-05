@@ -1,8 +1,8 @@
-import Product from './products'
+import {Product} from './products'
 
 export interface FetchProductsPayload {
     type: string;
-    payload: typeof Product;
+    payload: Product;
 }
 
 export interface AllProductsPayload {

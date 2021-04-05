@@ -1,10 +1,10 @@
-interface Product {
+export interface Product {
     id: number;
     name: string;
     price: number;
 }
 
-const allProducts: Product[] | [] = [
+export const allProducts: Product[] | [] = [
     {
         id: 1,
         name: 'Product 1',
@@ -26,5 +26,3 @@ const allProducts: Product[] | [] = [
         price: 400,
     },
 ]
-
-export default allProducts

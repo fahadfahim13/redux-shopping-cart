@@ -1,29 +1,32 @@
 import { connect, useDispatch } from 'react-redux'
-import ProductType from '../../static/products'
+import { Product } from '../../static/products'
 import { Select } from 'antd';
-import { selectProduct } from '../../redux/actions/productActions'
+import { useState } from 'react';
+import { Button } from "antd";
+import { addToCart } from "../../redux/actions/cartActions";
+
 
 const { Option } = Select;
 
 type Props = {
-    products: typeof ProductType;
+    products: Product[]|[];
 }
 
 const Products: React.FC<Props> = ({ products }) => {
+    
+    const [productId, setProductId] = useState(0)
     const dispatch = useDispatch()
 
     return(
         <div>
-            <Select style={{ width: 120 }}
-            onChange={(value: number) => dispatch(selectProduct(value))}
-            >
-            {products.map((product: any) => (
-                <Option value={product.id} key={product.id} 
-                // onClick={() => dispatch(selectProduct(product.id))}
-                >{product.name}</Option>
+            
+            <Select style={{ width: 120 }} onChange={(value: number) => setProductId(value)}>
+            {products.map((product: Product) => (
+                <Option value={product.id} key={product.id}>{product.name}</Option>
                 )
             )}
             </Select>
+            <Button type="primary" onClick={() => dispatch(addToCart(productId))}> Add </Button>
         </div>
     )
 }

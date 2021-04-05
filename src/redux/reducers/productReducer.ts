@@ -1,5 +1,5 @@
 import * as ProductConsts from '../actions/actiontypes/productTypes'
-import allProducts from '../../static/products'
+import { allProducts } from '../../static/products'
 import { FetchProductsPayload } from '../../static/productsPayload'
 
 const allProductsfromState = (state = allProducts, action: FetchProductsPayload) => {
