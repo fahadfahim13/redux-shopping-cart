@@ -1,6 +1,6 @@
 import { connect, useDispatch } from 'react-redux'
 import { Product } from '../../static/products'
-import { Select } from 'antd';
+import { Select, Space } from 'antd';
 import { useState } from 'react';
 import { Button } from "antd";
 import { addToCart } from "../../redux/actions/cartActions";
@@ -18,8 +18,8 @@ const Products: React.FC<Props> = ({ products }) => {
     const dispatch = useDispatch()
 
     return(
-        <div>
-            
+        <Space>
+            Select Product: 
             <Select style={{ width: 120 }} onChange={(value: number) => setProductId(value)}>
             {products.map((product: Product) => (
                 <Option value={product.id} key={product.id}>{product.name}</Option>
@@ -27,7 +27,7 @@ const Products: React.FC<Props> = ({ products }) => {
             )}
             </Select>
             <Button type="primary" onClick={() => dispatch(addToCart(productId))}> Add </Button>
-        </div>
+        </Space>
     )
 }
 
