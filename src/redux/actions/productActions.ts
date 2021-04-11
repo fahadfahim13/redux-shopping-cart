@@ -8,7 +8,7 @@ export const fetchAllProducts = (): AllProductsPayload => {
 }
 
 export const selectProduct = (id: number): SelectedProductPAyload => {
-    console.log("Found id: ", id)
+    // console.log("Found id: ", id)
     return {
         type: ProductConsts.SELECT_PRODUCT,
         payload: {id}

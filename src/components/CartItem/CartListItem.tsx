@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 const CartListItem = (item: CartItem) => {
 
     const dispatch = useDispatch();
-
     return (
         <div>
             <List.Item>
@@ -14,7 +13,6 @@ const CartListItem = (item: CartItem) => {
                 title={item.product.name}
                 description={`Quantity: ${item.quantity}   Price: ${item.product.price}    Total: ${item.product.price * item.quantity}`}
                 />
-                
                 <div><Button type="default" onClick={() => dispatch(addToCart(item.product.id))}> + </Button></div>
                 <div><Button type="primary" onClick={() => dispatch(removeFromCart(item.product.id))}> - </Button></div>
                 <div><Button type="link" onClick={() => dispatch(deleteFromCart(item.product.id))}> X </Button></div>

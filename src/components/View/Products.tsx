@@ -1,40 +1,36 @@
-import { connect, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Product } from '../../static/products'
 import { Select, Space } from 'antd';
 import { useState } from 'react';
 import { Button } from "antd";
 import { addToCart } from "../../redux/actions/cartActions";
-
+import { useSelector} from 'react-redux'
+import {Store} from '../../static/store'
 
 const { Option } = Select;
 
-type Props = {
-    products: Product[]|[];
-}
 
-const Products: React.FC<Props> = ({ products }) => {
+const Products = () => {
     
     const [productId, setProductId] = useState(0)
     const dispatch = useDispatch()
 
+    const products = useSelector((state: Store) => state.allProductsfromState);
+    const handleClick = () => {dispatch(addToCart(productId))}
     return(
         <Space>
             Select Product: 
             <Select style={{ width: 120 }} onChange={(value: number) => setProductId(value)}>
-            {products.map((product: Product) => (
+            {products && products.map((product: Product) => (
                 <Option value={product.id} key={product.id}>{product.name}</Option>
                 )
             )}
             </Select>
-            <Button type="primary" onClick={() => dispatch(addToCart(productId))}> Add </Button>
+            <Button type="primary" name="Add" id="button" onClick={handleClick}>Add</Button>
         </Space>
     )
 }
 
-const mapStateToProps = (state: any) => {
-    return{
-        products: state.allProductsfromState
-    }
-  }
 
-export default connect(mapStateToProps)(Products);
+
+export default Products;
